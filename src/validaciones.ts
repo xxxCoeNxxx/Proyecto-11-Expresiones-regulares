@@ -1,4 +1,5 @@
 import { listadoBancos } from "./datos-bancos";
+import { crearContenedor } from "./ui";
 
 export interface ResultadoIBAN {
   valido: boolean;
@@ -33,4 +34,39 @@ export const ibanCorrecto = (value:string): ResultadoIBAN => {
      control,
      cuenta
   };
+};
+
+export const pulsarParaComprobar = () => {
+  const input = document.querySelector("#input-busqueda");
+  const boton = document.querySelector("#boton-IBAN");
+
+  if (!input || !(input instanceof HTMLInputElement)) throw new Error("No se encontró el input");
+  if (!boton || !(boton instanceof HTMLButtonElement)) throw new Error("No se encontró el botón");
+
+  const ejecutarBusqueda = () => {
+    //Limpiar contenido anterior
+    document.querySelectorAll(".contenedor-datos, .mensaje").forEach(el => el.remove());
+
+    const resultado = ibanCorrecto(input.value);
+
+    if (!resultado.valido) {
+      const mensaje = document.createElement("p");
+      mensaje.textContent = "El IBAN no está bien formado"
+      mensaje.classList.add("mensaje")
+      document.body.appendChild(mensaje);
+      return;
+    }
+
+    const contenedor = crearContenedor(resultado);
+    document.body.appendChild(contenedor);
+  };
+
+  boton.addEventListener("click", ejecutarBusqueda);
+
+  input.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      ejecutarBusqueda();
+    }
+  });
 };
