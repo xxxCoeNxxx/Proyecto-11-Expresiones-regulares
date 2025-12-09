@@ -27,6 +27,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  padding: 50px;
+  padding-top: 30px;
 }
 
 h1 {
@@ -98,5 +100,16 @@ button:focus-visible {
   display: grid;
   align-content: start;
   justify-content: start;
-  margin: 20px;
+  padding-top: 15px;
+}
+
+.busqueda {
+  display: flex;
+  gap: 12px;
+}
+
+#input-busqueda {
+  padding: 0.6em 1em;
+  font-size: 1em;
+  width: 240px;
 }
