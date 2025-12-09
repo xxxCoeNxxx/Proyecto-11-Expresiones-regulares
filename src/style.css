@@ -113,3 +113,17 @@ button:focus-visible {
   font-size: 1em;
   width: 240px;
 }
+
+.boton-lupa {
+  height: 45px;               /* IGUAL ALTURA QUE EL INPUT */
+  width: 55px;                /* MÁS CUADRADO */
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  font-size: 1.4em;           /* TAMAÑO DE LA LUPA */
+  transition: border-color 0.25s, background-color 0.25s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
