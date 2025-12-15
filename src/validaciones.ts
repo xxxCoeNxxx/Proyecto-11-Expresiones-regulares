@@ -1,5 +1,6 @@
 import { listadoBancos } from "./datos-bancos";
 import { crearContenedor } from "./ui";
+import { isValidIBAN } from "ibantools";
 
 export interface ResultadoIBAN {
   valido: boolean;
@@ -10,6 +11,10 @@ export interface ResultadoIBAN {
 }
 
 export const ibanCorrecto = (value:string): ResultadoIBAN => {  
+  if (!isValidIBAN(value)) {
+    return {valido: false};
+  }
+ 
   const patronIBAN = /^(ES)\d{2}([ -]?)(?<banco>\d{4})\2(?<oficina>\d{4})\2(?<control>\d{2})\2(?<cuenta>\d{10})$/;
   
   const datos = patronIBAN.exec(value);
